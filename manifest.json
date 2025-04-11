@@ -1,0 +1,26 @@
+{
+  "name": "mariadb-reader",
+  "displayName": "MariaDB Reader",
+  "version": "0.1.0",
+  "description": "An MCP server to explore and query MariaDB databases.",
+  "author": "moosin76",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/moosin76/mcp_server_mariadb_reader.git"
+  },
+  "installation": {
+     "type": "git",
+     "command": "node",
+     "args": ["build/index.js"]
+  },
+  "keywords": [
+    "mcp",
+    "server",
+    "mariadb",
+    "database",
+    "sql",
+    "reader",
+    "query"
+  ],
+  "license": "MIT"
+}
