@@ -21,22 +21,22 @@
 
 ## 설정
 
-이 서버를 사용하려면 MCP 클라이언트(예: VS Code 확장 프로그램)의 설정 파일에 서버 정보를 등록해야 합니다.
+이 서버를 사용하려면 GitHub 저장소를 클론하고, MCP 클라이언트(예: VS Code 확장 프로그램)의 설정 파일에 서버 정보를 등록해야 합니다. 이 저장소에는 미리 빌드된 실행 파일(`build/index.js`)이 포함되어 있어 별도의 빌드 과정이 필요하지 않습니다.
 
-**설정 파일 경로 (VS Code 예시):**
-
-```
-c:\Users\<사용자명>\AppData\Roaming\Code\User\globalStorage\saoudrizwan.claude-dev\settings\cline_mcp_settings.json
-```
+1.  **저장소 클론:** 원하는 위치에 이 저장소를 클론합니다.
+    ```bash
+    git clone https://github.com/moosin76/mcp_server_mariadb_reader.git
+    ```
+2.  **MCP 설정 파일 수정:**
 
 **설정 예시:**
 
 ```json
 {
   "mcpServers": {
-    "mariadb-reader": {
+    "mcp_server_mariadb_reader": {
       "command": "node",
-      "args": ["<프로젝트 경로>/mariadb-reader-server/build/index.js"], // 실제 빌드된 index.js 파일 경로로 수정
+      "args": ["<클론된 저장소 경로>/build/index.js"], // 클론된 저장소 내 build/index.js 파일 경로
       "env": {
         "MARIADB_HOST": "YOUR_DB_HOST",         // MariaDB 호스트 주소
         "MARIADB_PORT": "YOUR_DB_PORT",         // MariaDB 포트 번호 (예: "3306")
@@ -54,20 +54,23 @@ c:\Users\<사용자명>\AppData\Roaming\Code\User\globalStorage\saoudrizwan.clau
 
 **주의:**
 
-*   `<프로젝트 경로>` 부분을 실제 `mariadb-reader-server` 프로젝트가 위치한 전체 경로로 변경해야 합니다. (예: `c:/Data/Work/Ampm/Site/MCP/mcp_server_mariadb_reader`)
+*   `<클론된 저장소 경로>` 부분을 실제 저장소를 클론한 로컬 경로로 변경해야 합니다. (예: `C:/Users/YourUser/Documents/GitHub/mcp_server_mariadb_reader`)
 *   `env` 객체 내의 MariaDB 연결 정보를 실제 환경에 맞게 수정해야 합니다.
 
-## 개발
+## 개발 (소스 코드 수정 시)
 
-1.  **의존성 설치:**
+이 저장소에는 빌드된 파일이 포함되어 있으므로, 서버를 사용하기 위해 아래 단계를 수행할 필요는 없습니다. 소스 코드(`src` 디렉토리)를 직접 수정하고 변경 사항을 적용하려면 다음 단계를 따르세요.
+
+1.  **의존성 설치 (최초 한 번 또는 `package.json` 변경 시):**
     ```bash
     npm install
     ```
-2.  **빌드:**
+2.  **수정 후 빌드:**
     ```bash
     npm run build
     ```
-3.  **(선택) 변경 사항 감지 및 자동 빌드:**
+    *   이 명령은 `src` 디렉토리의 TypeScript 코드를 `build` 디렉토리의 JavaScript 코드로 컴파일합니다.
+3.  **(선택) 개발 중 변경 사항 감지 및 자동 빌드:**
     ```bash
     npm run watch
     ```
